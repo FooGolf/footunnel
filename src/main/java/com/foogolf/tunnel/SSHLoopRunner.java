@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class SSHLoopRunner implements CommandLineRunner {
 
-    private final SSHLoopThread sshLoopThread;
+	private final SSHLoopThread sshLoopThread;
 
-//    @Autowired
-    public SSHLoopRunner(SSHLoopThread sshLoopThread) {
-        this.sshLoopThread = sshLoopThread;
-    }
+	//    @Autowired
+	public SSHLoopRunner(SSHLoopThread sshLoopThread) {
+		this.sshLoopThread = sshLoopThread;
+	}
 
-    @Override
-    public void run(String... args) throws Exception {
-        sshLoopThread.start();
-    }
+	@Override
+	public void run(String... args) throws Exception {
+		sshLoopThread.start();
+	}
 }

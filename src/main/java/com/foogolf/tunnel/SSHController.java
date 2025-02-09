@@ -14,47 +14,47 @@ public class SSHController {
 	@Autowired AtomicReference<Process> currentSshProcess;
 
 	// API to launch a SSH tunnel command, automatically retrying on failure. If one is already underway it is interrupted. 
-    @PostMapping("/doSSH")
-    public String startSshTunnel(@RequestBody TunnelRequest request) {
+	@PostMapping("/doSSH")
+	public String startSshTunnel(@RequestBody TunnelRequest request) {
 
-        int numSSHCommands = countActiveSshProcesses();
-        System.out.println("# running ssh commands: " + numSSHCommands);
+		int numSSHCommands = countActiveSshProcesses();
+		System.out.println("# running ssh commands: " + numSSHCommands);
 
-        currentTunnelRequest.set(request);  // tell the loop thread about the new connect details
-            
+		currentTunnelRequest.set(request);  // tell the loop thread about the new connect details
+
 		// kill the loop thread's existing ssh process if any
 		Process existingProcess = currentSshProcess.get();
 		if (existingProcess != null && existingProcess.isAlive()) {
 			System.out.println("Existing SSH process is alive - destroying");
 			existingProcess.destroy();
 			try {
-                if (!existingProcess.waitFor(10, java.util.concurrent.TimeUnit.SECONDS)) {
-                    System.out.println("Forcing SSH process termination...");
-                    existingProcess.destroyForcibly();
-                }
-                if (existingProcess.isAlive()) {
-                    System.out.println("Fatal error - existing ssh process couldn't be killed");
-                }
-                    
+				if (!existingProcess.waitFor(10, java.util.concurrent.TimeUnit.SECONDS)) {
+					System.out.println("Forcing SSH process termination...");
+					existingProcess.destroyForcibly();
+				}
+				if (existingProcess.isAlive()) {
+					System.out.println("Fatal error - existing ssh process couldn't be killed");
+				}
+
 			} catch (InterruptedException e) {
-			    System.out.println("Error - InterruptedException while waiting for SSH process termination: " + e.getMessage());
-			    
+				System.out.println("Error - InterruptedException while waiting for SSH process termination: " + e.getMessage());
+
 			} finally {
 				currentSshProcess.set(null);
 			}
-       	}
-        return "SSH process requested for cloudPC: " + request.getCloudPC();
-    }
-    
-    private int countActiveSshProcesses() {
-        try {
-            Process process = new ProcessBuilder("bash", "-c", "pgrep -fc '" + FooboxtunnelApplication.SSHCOMMAND + "'").start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String count = reader.readLine();
-            return count != null ? Integer.parseInt(count) : 0;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
+		}
+		return "SSH process requested for cloudPC: " + request.getCloudPC();
+	}
+
+	private int countActiveSshProcesses() {
+		try {
+			Process process = new ProcessBuilder("bash", "-c", "pgrep -fc '" + FooboxtunnelApplication.SSHCOMMAND + "'").start();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String count = reader.readLine();
+			return count != null ? Integer.parseInt(count) : 0;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }
