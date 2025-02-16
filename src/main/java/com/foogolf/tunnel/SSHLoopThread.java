@@ -48,8 +48,9 @@ public class SSHLoopThread extends Thread {
 				} finally {
 					currentSshProcess.set(null);
 				}
-			} else
-				System.out.println("Null tunnel request");
+			} else {
+				// System.out.println("Null tunnel request");
+			}
 
 			try {
 				Thread.sleep(2000);  // don't slam the cloud PC or loop too aggressively

@@ -9,10 +9,10 @@ This program supports golfers who:
 ## How it works
 
 ````   
-   ╔══════════════════════════╗     ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
-   ║  User device             ║ usb ╎ Golf launch  ╎
-   ║ (e.g raspberry pi   ┌┄┄┄┄╫┄┄┄┄┄┤ monitor      ╎
-   ╚═════════════════════╪════╝     └╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
+   ╔══════════════════════════╗               ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
+   ║ Streaming computer       ║ usb/bluetooth ╎ Golf launch  ╎
+   ║ (e.g Raspberry pi   ┌┄┄┄┄╫┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤ monitor      ╎
+   ╚═════════════════════╪════╝               └╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
                          ┆                          
              ssh tunnel  ┆            Player        
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┼╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╴    
@@ -20,12 +20,12 @@ This program supports golfers who:
    ║  Cloud PC           ┆    ║                     
    ║  ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┼╌┐  ║                     
    ║  ╎ Golf simulator   ╵ ╎  ║                     
-   ║  ╎  software          ╎  ║                     
+   ║  ╎ software (GSPro)   ╎  ║                     
    ║  └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘  ║                     
    ╚══════════════════════════╝
 ````
 
-This program acts as a permanently running local web server. When its `/doSSH` API is called (typically via Javascript in a foogolf.com web page), it sets up an SSH tunnel in to the gaming PC running in the cloud.
+This program acts as a permanently running local API server. When its `/doSSH` API is called (typically via Javascript in a foogolf.com web page), it sets up an SSH tunnel in to the gaming PC running in the cloud.
 
 This allows the virtualhere software running on the cloud PC to reach back and use USB devices attached to the user's device.
 
