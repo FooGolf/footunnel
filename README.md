@@ -3,7 +3,7 @@
 ## Purpose
 
 This program supports golfers who:
-- are playing a golf simulator such as GSPro on a remote Windows gaming PC, e.g. a cloud PC at FooGolf.com or a gaming PC elsewhere in the house
+- are playing a golf simulator such as GSPro on a Windows gaming PC in the cloud, e.g. a cloud PC at FooGolf.com
 - want to connect their launch monitor to their local computer via USB cable or bluetooth
 
 ## How it works
@@ -49,13 +49,10 @@ Call API to set up tunnel (typically this would instead happen via Javascript on
 
 The virtualhere software allows for one free USB/bluetooth device on a linux machine.
 
-If you want to add additional devices (e.g. USB-connected streamdeck as a GSPro control box) or use
-a Windows PC as your streaming device then you will need a full virtualhere licence.
+If you want to add additional devices (e.g. USB-connected streamdeck as a GSPro control box) then you will need a full virtualhere licence.
  
  ## Disclaimer
  
  This repository is provided "as is" without any warranties - express or implied - and use is at your own risk.
   
-
-
 
