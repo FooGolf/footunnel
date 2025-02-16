@@ -3,8 +3,8 @@
 ## Purpose
 
 This program supports golfers who:
-- are playing a golf simulator such as GSPro on a cloud PC e.g. at FooGolf.com
-- have their launch monitor attached to their local device via USB or bluetooth
+- are playing a golf simulator such as GSPro on a remote Windows gaming PC, e.g. a cloud PC at FooGolf.com or a gaming PC elsewhere in the house
+- want to connect their launch monitor to their local computer via USB cable or bluetooth
 
 ## How it works
 
